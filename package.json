@@ -1,0 +1,28 @@
+{
+  "name": "advanced-react-server-setup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nare-Stepanyan/advanced-react-server-setup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nare-Stepanyan/advanced-react-server-setup/issues"
+  },
+  "homepage": "https://github.com/Nare-Stepanyan/advanced-react-server-setup#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.15",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
