@@ -7,11 +7,7 @@ import mongoose from "mongoose";
 const app = express();
 
 // DB Setup
-mongoose.connect("mongodb://localhost:27017/auth", {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect("mongodb://localhost:27017/auth");
 
 // App setup
 app.use(morgan("combined"));

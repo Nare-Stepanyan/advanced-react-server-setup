@@ -1,7 +1,10 @@
+import signup from "./controllers/authentication.js";
+import servicePassport from "./services/passport.js";
+import passport from "passport";
+
+const requierAuth = passport.authenticate("jwt", { session: false });
 const router = (app) => {
-  app.get("/", function (req, res, next) {
-    res.send("Hi there");
-  });
+  app.post("/signup", signup);
 };
 
 export default router;
