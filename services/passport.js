@@ -1,10 +1,36 @@
 import passport from "passport";
 import User from "./../models/user.js";
+import jwtstrategy from "passport-jwt";
+import extractjwt from "passport-jwt";
+import LocalStrategy from "passport-local";
 import config from "./../config.js";
-import Strategy from "passport-jwt";
-import { ExtractJwt } from "passport-jwt";
+const JwtStrategy = jwtstrategy.Strategy;
+const ExtractJwt = extractjwt.ExtractJwt;
 
-const JwtStrategy = Strategy;
+const localOptions = { userNameField: "email" };
+const localLogin = new LocalStrategy(localOptions, function (
+  email,
+  password,
+  done
+) {
+  User.findOne({ email: email }, function (err, user) {
+    if (err) {
+      return done(err);
+    }
+    if (!user) {
+      return done(null, false);
+    }
+    user.comparePassword(password, function (err, isMatch) {
+      if (err) {
+        return done(err);
+      }
+      if (!isMatch) {
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  });
+});
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader("authorization"),
@@ -18,5 +44,5 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
     } else done(null, false);
   });
 });
-
+passport.use(localLogin);
 passport.use(jwtLogin);
