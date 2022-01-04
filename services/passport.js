@@ -7,7 +7,7 @@ import config from "./../config.js";
 const JwtStrategy = jwtstrategy.Strategy;
 const ExtractJwt = extractjwt.ExtractJwt;
 
-const localOptions = { userNameField: "email" };
+const localOptions = { usernameField: "email", passwordField: "password" };
 const localLogin = new LocalStrategy(localOptions, function (
   email,
   password,
